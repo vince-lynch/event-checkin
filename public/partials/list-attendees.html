@@ -28,20 +28,24 @@
 </div>
 
 
-      <div id="logbox" ng-show="showDetails == true">
-        <form>
-            <h1>Update Details</h1>
-             <input name="user[name]" type="text" placeholder="Name correct?" autofocus="autofocus" required="required" class="input pass" ng-model="updatePerson.name"/>
-              <input name="user[name]" type="text" placeholder="email correct?" autofocus="autofocus" required="required" class="input pass" ng-model="updatePerson.email"/>
-            <input name="user[password]" type="password" placeholder="Your Postcode?" ng-model="updatePerson.postcode" required="required" class="input pass"/>
-            <div style="text-align: center; color: grey;">
-              <span style="font-size: 12px;">Consent to recieve marketing messages?
-              <input type="checkbox" class="input pass" ng-model="updatePerson.markettingConsent" style="float: right; margin-right: 31px; margin-bottom: 20px; height: 32px;"></span>
-            </div>
-            <input type="submit" value="Join event!" class="inputButton" ng-click="updateDetails(updatePerson)"/>
-            <div class="text-center">
-                Already attending? <a href="/login">Update your details</a>
-            </div>
-      </form>
-      </div>
+  <div id="logbox" ng-show="showDetails == true">
+    <form ng-if="detailsComplete == false">
+        <h1>Update Details</h1>
+         <input name="user[name]" type="text" placeholder="Name correct?" autofocus="autofocus" required="required" class="input pass" ng-model="updatePerson.name"/>
+          <input name="user[name]" type="text" placeholder="email correct?" autofocus="autofocus" required="required" class="input pass" ng-model="updatePerson.email"/>
+        <input name="user[password]" type="text" placeholder="Your Postcode?" ng-model="updatePerson.postcode" required="required" class="input pass"/>
+        <div style="text-align: center; color: grey;">
+          <span style="font-size: 12px;">Consent to recieve marketing messages?
+          <input type="checkbox" class="input pass" ng-model="updatePerson.markettingConsent" style="float: right; margin-right: 31px; margin-bottom: 20px; height: 32px;"></span>
+        </div>
+        <input type="submit" value="Join event!" class="inputButton" ng-click="updateDetails(updatePerson)"/>
+        <div class="text-center">
+            Already attending? <a href="/login">Update your details</a>
+        </div>
+    </form>
+      <form ng-if="detailsComplete == true" style="text-align: center;">
+        <img src="/images/Green-Tick.png" width="80px" height="80px"/><br/>
+        Thanks, your now all checked in,<br/> enjoy the event!
+    </form>
+  </div>
   

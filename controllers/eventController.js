@@ -1,5 +1,5 @@
 var User = require('../models/User');
-
+var emailController =  require('../controllers/emailController.js');
 
 
 
@@ -26,6 +26,7 @@ exports.checkIn = function(req,res){
 
  	User.findByIdAndUpdate(req.body.person._id ,req.body.person, {new: false}, function(err, user){
  		console.log('found user', user);
+ 		res.json({message: "checked in", user: user})
  	})
 }
 
@@ -34,5 +35,15 @@ exports.updateAttendeeDetails = function(req,res){
 
  	User.findByIdAndUpdate(req.body.person._id ,req.body.person, {new: false}, function(err, user){
  		console.log('updated details of', user);
+
+ 		//if(user.hasOwnProperty("markettingConsent")){
+ 			if(user.markettingConsent == true){
+ 				console.log("MarkettingConsent agreed: reached email send ")
+ 				req.body.user = user;
+ 				emailController.emailThankyou(req,res);
+ 			}
+ 		//}
+
+ 		res.json({message: "updated details", user: user})
  	})
 }

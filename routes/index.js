@@ -1,14 +1,14 @@
-        var
-        express              = require('express'),
-        router               = express.Router();
+  var
+  express              = require('express'),
+  router               = express.Router();
 
 // Models
 var User = require('../models/User');
 var jwt = require('jsonwebtoken');
 // Controllers
-var userController = require('../controllers/user');
-var contactController = require('../controllers/contact');
+var userController  = require('../controllers/user');
 var eventController =  require('../controllers/eventController')
+var emailController =  require('../controllers/emailController.js')
 
 
 

@@ -1,5 +1,5 @@
 angular.module('MyApp')
-  .controller('eventSignCtrl', function($scope, $rootScope, $location, $window,  $http, $auth) {
+  .controller('eventSignCtrl', function($scope, $rootScope, $location, $window,  $http, $auth, $timeout) {
     
     $scope.eventName = 'launchparty';
     $rootScope.eventName = 'launchparty';
@@ -12,6 +12,7 @@ angular.module('MyApp')
       $scope.event = {};//{launchparty: {attendees: []}};
       $scope.event[$scope.eventName] = {attendees: []}
       $scope.event.launchparty.attendees = response.data.attendees;//[1,2,3,4,5,6,7];
+      $scope.detailsComplete = false
 
     })
 
@@ -37,6 +38,13 @@ angular.module('MyApp')
       $http.post('/api/updateAttendee/'+ $scope.eventName, {person: updatePerson})
       .then(function(response){
         console.log("updateAttendee response", response);
+        
+        $scope.detailsComplete = true;
+        $timeout(function() {
+          $scope.detailsComplete = false;
+          $scope.showDetails = false;
+        }, 1500);
+        
       })
 
     } 
